@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { GreeterComponent } from './greeter/greeter.component';
 import { SalaryCalculatorComponent } from './salaryCalculator/salaryCalculator.component';
 import { ProductsComponent } from './products/products.component';
+import { SalaryCalculatorResultComponent } from './salaryCalculator/salaryCalculatorResult.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { ProductsComponent } from './products/products.component';
     , GreeterComponent
     , SalaryCalculatorComponent
     , ProductsComponent
+    , SalaryCalculatorResultComponent
   ],
   imports: [
     BrowserModule

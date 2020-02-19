@@ -1,0 +1,14 @@
+<table>
+    <tbody>
+        <tr>
+            <td>{{model.basic}}</td>
+            <td>{{model.hra}}</td>
+            <td>{{model.da}}</td>
+            <td>{{model.tax}}</td>
+            <td *ngIf="model.salary !== 0"
+                [ngClass]="{ poorSalary : model.salary < 10000, goodSalary : model.salary >= 10000}">
+                {{model.salary | currency:'INR'}}
+            </td>
+        </tr>
+    </tbody>
+</table>
