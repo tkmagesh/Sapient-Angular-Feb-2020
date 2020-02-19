@@ -10,10 +10,16 @@ import { BugOperationsService } from './services/bugOperations.service';
 export class BugTrackerComponent{
     bugs : Bug[] = [];
 
+    /* 
     bugOperations : BugOperationsService;
 
     constructor(bugOperations : BugOperationsService){
         this.bugOperations = bugOperations;
+    } 
+    */
+
+    constructor(private bugOperations : BugOperationsService){
+
     }
 
     onAddNewClick(bugName : string){
