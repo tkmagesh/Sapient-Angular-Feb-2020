@@ -1,13 +1,28 @@
 import { Component } from '@angular/core';
+import { Bug } from './models/Bug'
+
 
 @Component({
     selector : 'app-bug-tracker',
     templateUrl : 'bugTracker.component.html'
 })
 export class BugTrackerComponent{
-    bugs : string[] = [];
+    bugs : Bug[] = [];
 
     onAddNewClick(bugName : string){
-        this.bugs.push(bugName);
+        const newBug : Bug = { name : bugName, isClosed : false };
+        this.bugs.push(newBug);
+    }
+
+    onBugNameClick(bug){
+        bug.isClosed = !bug.isClosed;
+    }
+
+    onRemoveClosedClick(){
+        this.bugs = this.bugs.filter(bug => !bug.isClosed);
+    }
+
+    getClosedCount(){
+        return this.bugs.reduce((result, bug) => bug.isClosed ? ++result : result, 0);
     }
 }
