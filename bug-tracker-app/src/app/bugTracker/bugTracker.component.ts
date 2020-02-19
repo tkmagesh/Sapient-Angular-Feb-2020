@@ -10,6 +10,8 @@ import { BugOperationsService } from './services/bugOperations.service';
 export class BugTrackerComponent{
     bugs : Bug[] = [];
 
+    bugSortAttr : string = 'name';
+    bugSortDesc : boolean = false;
     /* 
     bugOperations : BugOperationsService;
 
@@ -19,7 +21,10 @@ export class BugTrackerComponent{
     */
 
     constructor(private bugOperations : BugOperationsService){
-
+        this.bugs.push(this.bugOperations.createNew('Server communcation failure'))
+        this.bugs.push(this.bugOperations.createNew('User action not recognized'))
+        this.bugs.push(this.bugOperations.createNew('Application not responding'))
+        this.bugs.push(this.bugOperations.createNew('Data integrity checks failed'))
     }
 
     onAddNewClick(bugName : string){
