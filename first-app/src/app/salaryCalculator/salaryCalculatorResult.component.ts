@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SalaryCalculatorModel } from './salaryCalculatorModel';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector : 'app-salary-calculator-result',
