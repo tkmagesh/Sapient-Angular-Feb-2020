@@ -12,19 +12,9 @@ export class BugTrackerComponent{
     newBugName : string = '';
     bugSortAttr : string = 'name';
     bugSortDesc : boolean = false;
-    /* 
-    bugOperations : BugOperationsService;
-
-    constructor(bugOperations : BugOperationsService){
-        this.bugOperations = bugOperations;
-    } 
-    */
-
+   
     constructor(private bugOperations : BugOperationsService){
-        this.bugs.push(this.bugOperations.createNew('Server communcation failure'))
-        this.bugs.push(this.bugOperations.createNew('User action not recognized'))
-        this.bugs.push(this.bugOperations.createNew('Application not responding'))
-        this.bugs.push(this.bugOperations.createNew('Data integrity checks failed'))
+        
     }
 
     onAddNewClick(bugName : string){
