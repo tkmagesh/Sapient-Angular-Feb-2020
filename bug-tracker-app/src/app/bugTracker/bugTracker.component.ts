@@ -10,7 +10,7 @@ import { BugOperationsService } from './services/bugOperations.service';
 })
 export class BugTrackerComponent implements OnInit{
     bugs : Bug[] = [];
-    newBugName : string = '';
+    
     bugSortAttr : string = 'name';
     bugSortDesc : boolean = false;
    
@@ -22,9 +22,7 @@ export class BugTrackerComponent implements OnInit{
         this.bugs = this.bugOperations.getAll();
     }
 
-    onAddNewClick(bugName : string){
-        const newBug = this.bugOperations.createNew(bugName);          
-        //this.bugs.push(newBug);
+    newBugCreated(newBug : Bug){
         this.bugs = [...this.bugs, newBug];
     }
 
