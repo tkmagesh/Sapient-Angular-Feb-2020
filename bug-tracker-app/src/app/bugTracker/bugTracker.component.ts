@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Bug } from './models/Bug'
 import { BugOperationsService } from './services/bugOperations.service';
 
-
+import { HttpClient } from '@angular/common/http';
+import { forkJoin } from 'rxjs'
 
 @Component({
     selector : 'app-bug-tracker',
@@ -14,12 +15,13 @@ export class BugTrackerComponent implements OnInit{
     bugSortAttr : string = 'name';
     bugSortDesc : boolean = false;
    
-    constructor(private bugOperations : BugOperationsService){
-        
+    constructor(private bugOperations : BugOperationsService
+        , private httpClient : HttpClient){
+       
     }
 
     ngOnInit(){
-        this.bugs = this.bugOperations.getAll();
+        this.loadBugs();
     }
 
     newBugCreated(newBug : Bug){
@@ -27,11 +29,33 @@ export class BugTrackerComponent implements OnInit{
     }
 
     onBugNameClick(bugToToggle : Bug ){
-        const toggledBug = this.bugOperations.toggle(bugToToggle);
-        this.bugs = this.bugs.map(bug => bug === bugToToggle ? toggledBug : bug);
+        this.bugOperations
+            .toggle(bugToToggle)
+            .subscribe(toggledBug => this.bugs = this.bugs.map(bug => bug === bugToToggle ? toggledBug : bug));
+    }
+
+    loadBugs(){
+        this.bugOperations
+            .getAll()
+            .subscribe(bugs => this.bugs = bugs);
     }
 
     onRemoveClosedClick(){
-        this.bugs = this.bugs.filter(bug => !bug.isClosed);
+        /* 
+        this.bugs
+            .filter(bug => bug.isClosed)
+            .forEach(closedBug => {
+                this.bugOperations
+                    .remove(closedBug)
+                    .subscribe(() => this.bugs = this.bugs.filter(bug => bug.id !== closedBug.id));
+            }) 
+        */
+
+        const removeClosedBugs$ = this.bugs
+            .filter(bug => bug.isClosed)
+            .map(closedBug => this.bugOperations.remove(closedBug));
+
+        forkJoin(removeClosedBugs$)
+            .subscribe(() => this.loadBugs());
     }   
 }

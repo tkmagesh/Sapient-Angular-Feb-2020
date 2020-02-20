@@ -5,6 +5,12 @@
       "name": "Server communication failure",
       "isClosed": false,
       "createdAt": "2019-12-04T11:12:59.819Z"
+    },
+    {
+      "id": 7,
+      "name": "Data integrity checks failed",
+      "isClosed": false,
+      "createdAt": "2020-02-20T09:58:34.100Z"
     }
   ],
   "employees": [

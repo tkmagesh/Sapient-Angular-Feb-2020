@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BugTrackerComponent } from './bugTracker/bugTracker.component';
@@ -14,6 +15,7 @@ import { ElapsedPipe } from './bugTracker/pipes/elapsed.pipe';
 import { ClosedCountPipe } from './bugTracker/pipes/closedCount.pipe';
 
 import { BugStorageService } from './bugTracker/services/bugStorage.service';
+import { BugApiService } from './bugTracker/services/bugApi.service';
 
 @NgModule({
   declarations: [
@@ -28,10 +30,12 @@ import { BugStorageService } from './bugTracker/services/bugStorage.service';
   ],
   imports: [
     BrowserModule
+    , HttpClientModule
   ],
   providers: [
     BugOperationsService
     , BugStorageService
+    , BugApiService
   ],
   bootstrap: [AppComponent]
 })
