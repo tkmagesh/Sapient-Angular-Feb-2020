@@ -3,6 +3,7 @@ import { Bug } from './models/Bug'
 import { BugOperationsService } from './services/bugOperations.service';
 
 
+
 @Component({
     selector : 'app-bug-tracker',
     templateUrl : 'bugTracker.component.html'
@@ -18,7 +19,7 @@ export class BugTrackerComponent{
     }
 
     onAddNewClick(bugName : string){
-        const newBug = this.bugOperations.createNew(bugName);    
+        const newBug = this.bugOperations.createNew(bugName);          
         //this.bugs.push(newBug);
         this.bugs = [...this.bugs, newBug];
     }
